@@ -38,6 +38,6 @@ vapigen --library=libmodbus libmodbus/libmodbus.gi
 - https://launchpad.net/libmodbus
 - http://live.gnome.org/Vala/Bindings
 
-[1]: (http://btbytes.github.com/modbus-vala)
-[2]: (https://launchpad.net/libmodbus)
-[3]: (http://live.gnome.org/Vala/Bindings)
+[1]: http://btbytes.github.com/modbus-vala
+[2]: https://launchpad.net/libmodbus
+[3]: http://live.gnome.org/Vala/Bindings
