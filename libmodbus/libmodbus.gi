@@ -97,6 +97,30 @@
 				<parameter name="or_mask" type="uint16_t"/>
 			</parameters>
 		</function>
+		<function name="modbus_new_rtu" symbol="modbus_new_rtu">
+			<return-type type="modbus_t*"/>
+			<parameters>
+				<parameter name="device" type="char*"/>
+				<parameter name="baud" type="int"/>
+				<parameter name="parity" type="char"/>
+				<parameter name="data_bit" type="int"/>
+				<parameter name="stop_bit" type="int"/>
+			</parameters>
+		</function>
+		<function name="modbus_new_tcp" symbol="modbus_new_tcp">
+			<return-type type="modbus_t*"/>
+			<parameters>
+				<parameter name="ip_address" type="char*"/>
+				<parameter name="port" type="int"/>
+			</parameters>
+		</function>
+		<function name="modbus_new_tcp_pi" symbol="modbus_new_tcp_pi">
+			<return-type type="modbus_t*"/>
+			<parameters>
+				<parameter name="node" type="char*"/>
+				<parameter name="service" type="char*"/>
+			</parameters>
+		</function>
 		<function name="read_bits" symbol="modbus_read_bits">
 			<return-type type="int"/>
 			<parameters>
@@ -170,6 +194,32 @@
 				<parameter name="ctx" type="modbus_t*"/>
 				<parameter name="max_dest" type="int"/>
 				<parameter name="dest" type="uint8_t*"/>
+			</parameters>
+		</function>
+		<function name="rtu_get_rts" symbol="modbus_rtu_get_rts">
+			<return-type type="int"/>
+			<parameters>
+				<parameter name="ctx" type="modbus_t*"/>
+			</parameters>
+		</function>
+		<function name="rtu_get_serial_mode" symbol="modbus_rtu_get_serial_mode">
+			<return-type type="int"/>
+			<parameters>
+				<parameter name="ctx" type="modbus_t*"/>
+			</parameters>
+		</function>
+		<function name="rtu_set_rts" symbol="modbus_rtu_set_rts">
+			<return-type type="int"/>
+			<parameters>
+				<parameter name="ctx" type="modbus_t*"/>
+				<parameter name="mode" type="int"/>
+			</parameters>
+		</function>
+		<function name="rtu_set_serial_mode" symbol="modbus_rtu_set_serial_mode">
+			<return-type type="int"/>
+			<parameters>
+				<parameter name="ctx" type="modbus_t*"/>
+				<parameter name="mode" type="int"/>
 			</parameters>
 		</function>
 		<function name="send_raw_request" symbol="modbus_send_raw_request">
@@ -261,6 +311,34 @@
 				<parameter name="errnum" type="int"/>
 			</parameters>
 		</function>
+		<function name="tcp_accept" symbol="modbus_tcp_accept">
+			<return-type type="int"/>
+			<parameters>
+				<parameter name="ctx" type="modbus_t*"/>
+				<parameter name="s" type="int*"/>
+			</parameters>
+		</function>
+		<function name="tcp_listen" symbol="modbus_tcp_listen">
+			<return-type type="int"/>
+			<parameters>
+				<parameter name="ctx" type="modbus_t*"/>
+				<parameter name="nb_connection" type="int"/>
+			</parameters>
+		</function>
+		<function name="tcp_pi_accept" symbol="modbus_tcp_pi_accept">
+			<return-type type="int"/>
+			<parameters>
+				<parameter name="ctx" type="modbus_t*"/>
+				<parameter name="s" type="int*"/>
+			</parameters>
+		</function>
+		<function name="tcp_pi_listen" symbol="modbus_tcp_pi_listen">
+			<return-type type="int"/>
+			<parameters>
+				<parameter name="ctx" type="modbus_t*"/>
+				<parameter name="nb_connection" type="int"/>
+			</parameters>
+		</function>
 		<function name="write_and_read_registers" symbol="modbus_write_and_read_registers">
 			<return-type type="int"/>
 			<parameters>
@@ -341,6 +419,11 @@
 		<constant name="EMBXSBUSY" type="int" value="0"/>
 		<constant name="EMBXSFAIL" type="int" value="0"/>
 		<constant name="FALSE" type="int" value="0"/>
+		<constant name="LIBMODBUS_VERSION_HEX" type="int" value="0"/>
+		<constant name="LIBMODBUS_VERSION_MAJOR" type="int" value="3"/>
+		<constant name="LIBMODBUS_VERSION_MICRO" type="int" value="2"/>
+		<constant name="LIBMODBUS_VERSION_MINOR" type="int" value="1"/>
+		<constant name="LIBMODBUS_VERSION_STRING" type="char*" value="3.1.2"/>
 		<constant name="MODBUS_BROADCAST_ADDRESS" type="int" value="0"/>
 		<constant name="MODBUS_ENOBASE" type="int" value="112345678"/>
 		<constant name="MODBUS_FC_MASK_WRITE_REGISTER" type="int" value="22"/>
@@ -363,6 +446,15 @@
 		<constant name="MODBUS_MAX_WRITE_REGISTERS" type="int" value="123"/>
 		<constant name="MODBUS_MAX_WR_READ_REGISTERS" type="int" value="125"/>
 		<constant name="MODBUS_MAX_WR_WRITE_REGISTERS" type="int" value="121"/>
+		<constant name="MODBUS_RTU_MAX_ADU_LENGTH" type="int" value="256"/>
+		<constant name="MODBUS_RTU_RS232" type="int" value="0"/>
+		<constant name="MODBUS_RTU_RS485" type="int" value="1"/>
+		<constant name="MODBUS_RTU_RTS_DOWN" type="int" value="2"/>
+		<constant name="MODBUS_RTU_RTS_NONE" type="int" value="0"/>
+		<constant name="MODBUS_RTU_RTS_UP" type="int" value="1"/>
+		<constant name="MODBUS_TCP_DEFAULT_PORT" type="int" value="502"/>
+		<constant name="MODBUS_TCP_MAX_ADU_LENGTH" type="int" value="260"/>
+		<constant name="MODBUS_TCP_SLAVE" type="int" value="255"/>
 		<constant name="OFF" type="int" value="0"/>
 		<constant name="ON" type="int" value="1"/>
 		<constant name="TRUE" type="int" value="1"/>

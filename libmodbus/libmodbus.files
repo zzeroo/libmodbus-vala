@@ -1,2 +1,2 @@
-include/libmodbus/
+include/modbus/
 lib/libmodbus.so

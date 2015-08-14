@@ -1,12 +1,12 @@
 # libmodbus-vala
 
-This are the vala bindings for the lates libmodbus (3.1.2).
+These are the vala bindings for the latest libmodbus (3.1.2).
 
-This package is not a fork but heavy inspired by [bytes modbus-vala][1] project.
+This package is not a fork but heavy inspired by the [bytes modbus-vala][1] project.
 
 ## Steps to generate the `.vapi` file
 
-First you have to checkout and install [libmodbus][2]. I prever compiling from source
+First you have to checkout and install [libmodbus][2]. I prefer compiling from source
 but this is up to you.
 
 ```
@@ -24,13 +24,45 @@ git clone https://github.com/zzeroo/libmodbus-vala.git
 cd libmodbus-vala
 ```
 
-Finaly run these two commands. This should generate the `libmodbus.vapi` in
-projects root.
+Finally run these two commands. This should generate the `libmodbus.vapi` in
+projects root. **There is a bug. Please read further before proceeding!**
 
 ```
 vala-gen-introspect libmodbus libmodbus
 vapigen --library=libmodbus libmodbus/libmodbus.gi
 ```
+
+##Notice
+Unfortunately there is a problem with the generated `.gi` file. The command
+`vala-gen-introspect libmodbus libmodbus` cuts off some function names.
+These so generated function names start with `new_` which is an error. Because
+of this misnamed functions the second command `vapigen --library=libmodbus libmodbus/libmodbus.gi`
+fails with an error like these:
+
+```
+libmodbus.gi:0.0-0.0: error: construction methods may only be declared within classes and structs
+libmodbus.gi:0.0-0.0: error: construction methods may only be declared within classes and structs
+libmodbus.gi:0.0-0.0: error: construction methods may only be declared within classes and structs
+```
+
+###Bugfix `vala-gen-introspect`'s cut off
+After the first command
+```
+vala-gen-introspect libmodbus libmodbus
+```
+you have to replace the function names in the `libmodbus.gi` file
+```
+sed -i 's/name="new_rtu"/name="modbus_new_rtu"/g' libmodbus/libmodbus.gi
+sed -i 's/name="new_tcp"/name="modbus_new_tcp"/g' libmodbus/libmodbus.gi
+sed -i 's/name="new_tcp_pi"/name="modbus_new_tcp_pi"/g' libmodbus/libmodbus.gi
+```
+now you can call the last command.
+```
+vapigen --library=libmodbus libmodbus/libmodbus.gi
+```
+
+
+See [this thread on the vala-list][valabug]
 
 ## References
 
@@ -41,3 +73,4 @@ vapigen --library=libmodbus libmodbus/libmodbus.gi
 [1]: http://btbytes.github.com/modbus-vala
 [2]: https://launchpad.net/libmodbus
 [3]: http://live.gnome.org/Vala/Bindings
+[valabug]: https://mail.gnome.org/archives/vala-list/2012-March/msg00003.html

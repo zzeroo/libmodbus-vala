@@ -86,6 +86,16 @@ namespace Modbus {
 	[CCode (cheader_filename = "libmodbus.h")]
 	public const int FC_WRITE_SINGLE_REGISTER;
 	[CCode (cheader_filename = "libmodbus.h")]
+	public const int LIBMODBUS_VERSION_HEX;
+	[CCode (cheader_filename = "libmodbus.h")]
+	public const int LIBMODBUS_VERSION_MAJOR;
+	[CCode (cheader_filename = "libmodbus.h")]
+	public const int LIBMODBUS_VERSION_MICRO;
+	[CCode (cheader_filename = "libmodbus.h")]
+	public const int LIBMODBUS_VERSION_MINOR;
+	[CCode (cheader_filename = "libmodbus.h")]
+	public const string LIBMODBUS_VERSION_STRING;
+	[CCode (cheader_filename = "libmodbus.h")]
 	public const int MAX_ADU_LENGTH;
 	[CCode (cheader_filename = "libmodbus.h")]
 	public const int MAX_PDU_LENGTH;
@@ -105,6 +115,24 @@ namespace Modbus {
 	public const int OFF;
 	[CCode (cheader_filename = "libmodbus.h")]
 	public const int ON;
+	[CCode (cheader_filename = "libmodbus.h")]
+	public const int RTU_MAX_ADU_LENGTH;
+	[CCode (cheader_filename = "libmodbus.h")]
+	public const int RTU_RS232;
+	[CCode (cheader_filename = "libmodbus.h")]
+	public const int RTU_RS485;
+	[CCode (cheader_filename = "libmodbus.h")]
+	public const int RTU_RTS_DOWN;
+	[CCode (cheader_filename = "libmodbus.h")]
+	public const int RTU_RTS_NONE;
+	[CCode (cheader_filename = "libmodbus.h")]
+	public const int RTU_RTS_UP;
+	[CCode (cheader_filename = "libmodbus.h")]
+	public const int TCP_DEFAULT_PORT;
+	[CCode (cheader_filename = "libmodbus.h")]
+	public const int TCP_MAX_ADU_LENGTH;
+	[CCode (cheader_filename = "libmodbus.h")]
+	public const int TCP_SLAVE;
 	[CCode (cheader_filename = "libmodbus.h")]
 	public const int TRUE;
 	[CCode (cheader_filename = "libmodbus.h")]
@@ -135,6 +163,12 @@ namespace Modbus {
 	public static unowned Modbus.modbus_mapping_t mapping_new (int nb_bits, int nb_input_bits, int nb_registers, int nb_input_registers);
 	[CCode (cheader_filename = "libmodbus.h")]
 	public static int mask_write_register (Modbus.modbus_t ctx, int addr, uint16 and_mask, uint16 or_mask);
+	[CCode (cheader_filename = "libmodbus.h", cname = "modbus_new_rtu")]
+	public static unowned Modbus.modbus_t modbus_new_rtu (string device, int baud, GLib.ObjectPath parity, int data_bit, int stop_bit);
+	[CCode (cheader_filename = "libmodbus.h", cname = "modbus_new_tcp")]
+	public static unowned Modbus.modbus_t modbus_new_tcp (string ip_address, int port);
+	[CCode (cheader_filename = "libmodbus.h", cname = "modbus_new_tcp_pi")]
+	public static unowned Modbus.modbus_t modbus_new_tcp_pi (string node, string service);
 	[CCode (cheader_filename = "libmodbus.h")]
 	public static int read_bits (Modbus.modbus_t ctx, int addr, int nb, uchar dest);
 	[CCode (cheader_filename = "libmodbus.h")]
@@ -153,6 +187,14 @@ namespace Modbus {
 	public static int reply_exception (Modbus.modbus_t ctx, uchar req, uint exception_code);
 	[CCode (cheader_filename = "libmodbus.h")]
 	public static int report_slave_id (Modbus.modbus_t ctx, int max_dest, uchar dest);
+	[CCode (cheader_filename = "libmodbus.h")]
+	public static int rtu_get_rts (Modbus.modbus_t ctx);
+	[CCode (cheader_filename = "libmodbus.h")]
+	public static int rtu_get_serial_mode (Modbus.modbus_t ctx);
+	[CCode (cheader_filename = "libmodbus.h")]
+	public static int rtu_set_rts (Modbus.modbus_t ctx, int mode);
+	[CCode (cheader_filename = "libmodbus.h")]
+	public static int rtu_set_serial_mode (Modbus.modbus_t ctx, int mode);
 	[CCode (cheader_filename = "libmodbus.h")]
 	public static int send_raw_request (Modbus.modbus_t ctx, uchar raw_req, int raw_req_length);
 	[CCode (cheader_filename = "libmodbus.h")]
@@ -177,6 +219,14 @@ namespace Modbus {
 	public static int set_socket (Modbus.modbus_t ctx, int s);
 	[CCode (cheader_filename = "libmodbus.h")]
 	public static unowned string strerror (int errnum);
+	[CCode (cheader_filename = "libmodbus.h")]
+	public static int tcp_accept (Modbus.modbus_t ctx, int s);
+	[CCode (cheader_filename = "libmodbus.h")]
+	public static int tcp_listen (Modbus.modbus_t ctx, int nb_connection);
+	[CCode (cheader_filename = "libmodbus.h")]
+	public static int tcp_pi_accept (Modbus.modbus_t ctx, int s);
+	[CCode (cheader_filename = "libmodbus.h")]
+	public static int tcp_pi_listen (Modbus.modbus_t ctx, int nb_connection);
 	[CCode (cheader_filename = "libmodbus.h")]
 	public static int write_and_read_registers (Modbus.modbus_t ctx, int write_addr, int write_nb, uint16 src, int read_addr, int read_nb, uint16 dest);
 	[CCode (cheader_filename = "libmodbus.h")]
