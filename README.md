@@ -6,7 +6,7 @@ This package is not a fork but heavy inspired by [bytes modbus-vala][1] project.
 
 ## Steps to generate the `.vapi` file
 
-First you have to checkout and install libmodbus. I prever compiling from source
+First you have to checkout and install [libmodbus][2]. I prever compiling from source
 but this is up to you.
 
 ```
@@ -20,8 +20,12 @@ sudo make install
 Then you have to checkout this libmodbus-vala repo from github.
 
 ```
+git clone https://github.com/zzeroo/libmodbus-vala.git
+cd libmodbus-vala
 ```
 
+Finaly run these two commands. This should generate the `libmodbus.vapi` in
+projects root.
 
 ```
 vala-gen-introspect libmodbus libmodbus
