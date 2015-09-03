@@ -67,10 +67,10 @@ See [this thread on the vala-list][valabug]
 ## References
 
 - http://btbytes.github.com/modbus-vala
-- https://launchpad.net/libmodbus
+- http://stackoverflow.com/questions/16779527/parameters-to-use-in-a-vapi-definition-for-passing-arrays-by-reference
 - http://live.gnome.org/Vala/Bindings
 
 [1]: http://btbytes.github.com/modbus-vala
-[2]: https://launchpad.net/libmodbus
+[2]: http://libmodbus.org/
 [3]: http://live.gnome.org/Vala/Bindings
 [valabug]: https://mail.gnome.org/archives/vala-list/2012-March/msg00003.html
