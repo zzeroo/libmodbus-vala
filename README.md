@@ -25,7 +25,7 @@ cd libmodbus-vala
 ```
 
 Finally run these two commands. This should generate the `libmodbus.vapi` in
-projects root. **There is a bug. Please read further before proceeding!**
+projects root. **There is a [bug][valabug]. Please read further before proceeding!**
 
 ```
 vala-gen-introspect libmodbus libmodbus
